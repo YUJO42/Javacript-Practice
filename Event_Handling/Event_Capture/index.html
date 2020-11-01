@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Bubbling</title>
+  </head>
+  <body>
+    <div class="one">
+      11111
+      <div class="two">
+        22222
+        <div class="three">33333</div>
+      </div>
+    </div>
+    <script>
+      const divs = document.querySelectorAll('div');
+      divs.forEach(function (div) {
+        div.addEventListener('click', logEvent, {
+          capture: true, // default value = 'false'
+        });
+      });
+
+      function logEvent(event) {
+        console.log(event.currentTarget.className);
+      }
+    </script>
+  </body>
+</html>
