@@ -3,11 +3,45 @@
 // -> $element.addEventlistener('click', (e) => someFunc(e)) - X / 어떤 걸 넘길지 결정 / 구조분해 할당으로 하위 객체 감사/ 제어권이 개발자에게
 // -> $element.addEventlistener('click', (e) => { // blah blah blach }) - X
 
-// $div.addEventListener('click', () => console.log('hello'));
 const $div = document.querySelector('div');
 
-$div.addEventListener('click', (e) => console.log(e.target));
+$div.addEventListener('click', handleSubmit);
 
+const users = [
+  {
+    name: 'yujo',
+    level: 3,
+  },
+  {
+    name: 'minckim',
+    level: 10,
+  },
+  {
+    name: 'nakim',
+    level: 7,
+  },
+];
+
+$div.addEventListener('click', (e) => handleSubmit(e, users));
+
+function handleSubmit(e, users) {
+  console.log(e);
+  console.log(users);
+}
 // function printSelectedTarget(target) {
 //   console.log(target);
 // }
+
+// const func = (ele, index, arr) => {
+//   return (
+//     <li key={index} onClick={(e) => handleSubmit(e, ele.name, ele.value)}>
+//       {ele}
+//     </li>
+//   );
+// };
+
+// const handleSubmit = (e, name, value) => {};
+
+// addEventListener('click', ({ target: { name } }) =>
+//   console.log(`${name} [레벨1 4기]조윤호`),
+// ); // output: hello
