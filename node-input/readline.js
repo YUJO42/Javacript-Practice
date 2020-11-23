@@ -10,6 +10,15 @@ const rl = readline.createInterface({
 //   rl.close();
 // });
 
+let count = 0;
 rl.on('line', (input) => {
   console.log(`Recived : ${input}`);
+  count++;
+  if (count === 5) {
+    rl.close();
+  }
 });
+
+// rl.on('resume', () => {
+//   //
+// });
