@@ -3,11 +3,12 @@ function Car(name) {
   this.count = 0;
 }
 
-function makeNewCars(carNamesArray) {
-  return carNamesArray.map((name) => new Car(name));
-}
-
-const carList = makeNewCars(['yujo', 'dohkim', 'jilim', 'sohpark']);
+const carList = [
+  new Car('dohkim'),
+  new Car('hjeon'),
+  new Car('jilim'),
+  new Car('sohpark'),
+];
 
 function getRandomNumber() {
   const min = 0;
@@ -26,7 +27,6 @@ function printResult(carList, racingCount) {
   while (racingCount--) {
     carList.forEach((car) => race(car));
     console.log(carList);
-    console.log(racingCount);
   }
 }
 
