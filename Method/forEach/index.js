@@ -23,10 +23,18 @@ function race(car) {
   }
 }
 
+function teplate(car) {
+  return `<h3>${car.name}: ${car.count}`;
+}
+
 function printResult(carList, racingCount) {
+  const $testBox = document.querySelector('.test-box');
+
   while (racingCount--) {
     carList.forEach((car) => race(car));
-    console.log(carList);
+    carList.forEach((car) =>
+      $testBox.insertAdjacentElement('beforeend', teplate(car)),
+    );
   }
 }
 
