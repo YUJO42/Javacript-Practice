@@ -1,41 +1,40 @@
-function Car(name) {
+function Friend(name, age) {
   this.name = name;
-  this.count = 0;
+  this.age = age;
 }
 
-const carList = [
-  new Car('dohkim'),
-  new Car('hjeon'),
-  new Car('jilim'),
-  new Car('sohpark'),
+const friendList = [
+  new Friend('kim', 25),
+  new Friend('jeon', 26),
+  new Friend('lim', 22),
+  new Friend('park', 23),
 ];
 
-function getRandomNumber() {
+const getRandomNumber = () => {
   const min = 0;
   const max = 10;
 
   return Math.floor(Math.random() * (max - min)) + min;
-}
+};
 
-function race(car) {
+function race(friend) {
   if (getRandomNumber() > 3) {
-    car.count++;
+    friend.age++;
   }
 }
 
-function teplate(car) {
-  return `<h3>${car.name}: ${car.count}`;
-}
+function friendRace(friendList, count) {
+  const $box = document.querySelector('.test-box');
 
-function printResult(carList, racingCount) {
-  const $testBox = document.querySelector('.test-box');
-
-  while (racingCount--) {
-    carList.forEach((car) => race(car));
-    carList.forEach((car) =>
-      $testBox.insertAdjacentElement('beforeend', teplate(car)),
+  while (count--) {
+    friendList.forEach((friend) => race(friend));
+    friendList.forEach((friend) =>
+      $box.insertAdjacentElement(
+        'beforeend',
+        `${friend.name} : ${friend.age} <br>`,
+      ),
     );
   }
 }
 
-printResult(carList, 3);
+friendRace(friendList, 3);
