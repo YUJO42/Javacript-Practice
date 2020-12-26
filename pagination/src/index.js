@@ -24,16 +24,16 @@ const buttonTemplate = (number) => {
   return `<button id="number-button">${number}</button>`;
 };
 
-const getItemLength = () => {
-  if (items % 10 === 0) {
-    return Math.floor(items.length / 10);
+const getItemLength = (number) => {
+  if (items % number === 0) {
+    return Math.floor(items.length / number);
   }
-  return Math.floor(items.length / 10) + 1;
+  return Math.floor(items.length / number) + 1;
 };
 
-const renderButton = () => {
+const renderButton = (number) => {
   const $buttonContainer = document.querySelector('#button-container');
-  const length = getItemLength();
+  const length = getItemLength(number);
 
   for (let i = 1; i <= length; i++) {
     $buttonContainer.insertAdjacentHTML('beforeend', buttonTemplate(i));
