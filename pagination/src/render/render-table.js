@@ -13,15 +13,19 @@ const tableInfoTemplate = ({ id, data }) => {
           </tr>`;
 };
 
+const renderRange = (targetPageNumber, index) => {
+  if (Math.floor(index / 10) === targetPageNumber) {
+    return true;
+  }
+  return false;
+};
+
 export const renderTable = (targetPageNumber) => {
   const $mainTable = document.querySelector('.main-table');
   $mainTable.innerHTML = tableTemplate;
 
   items().forEach((item, index) => {
-    if (
-      targetPageNumber * 10 < index + 1 &&
-      index + 1 <= targetPageNumber + 1 * SHOWING_PAGE_NUMBER
-    ) {
+    if (renderRange(targetPageNumber, index)) {
       $mainTable.insertAdjacentHTML('beforeend', tableInfoTemplate(item));
     }
   });
