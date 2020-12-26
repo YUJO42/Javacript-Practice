@@ -4,5 +4,5 @@ import { renderTable } from './render-table.js';
 
 export const render = () => {
   renderButton(SHOWING_PAGE_NUMBER);
-  renderTable(SHOWING_PAGE_NUMBER);
+  renderTable(0);
 };
