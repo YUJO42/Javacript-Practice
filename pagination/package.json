@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "yujo",
   "license": "ISC",
   "devDependencies": {
     "eslint": "^7.2.0",

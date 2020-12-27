@@ -1,5 +1,4 @@
 import { items } from '../store/items.js';
-import { SHOWING_PAGE_NUMBER } from '../store/constant.js';
 
 const tableTemplate = `<tr>
                          <th>ID</th>
