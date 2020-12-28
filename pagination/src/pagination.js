@@ -12,8 +12,8 @@ export const items = () => {
   return items;
 };
 
-export default function pagination() {
-  render();
+export default function pagination(item, number) {
+  render(item, number);
   init();
 }
 
