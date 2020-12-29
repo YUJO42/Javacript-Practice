@@ -1,5 +1,3 @@
-import { items } from '../store/items.js';
-
 const tableTemplate = `<tr>
                          <th>ID</th>
                          <th>NAME</th>
@@ -19,11 +17,11 @@ const renderRange = (targetPageNumber, index) => {
   return false;
 };
 
-export const renderTable = (targetPageNumber) => {
+export const renderTable = (items, targetPageNumber) => {
   const $mainTable = document.querySelector('.main-table');
   $mainTable.innerHTML = tableTemplate;
 
-  items().forEach((item, index) => {
+  items.forEach((item, index) => {
     if (renderRange(targetPageNumber, index)) {
       $mainTable.insertAdjacentHTML('beforeend', tableInfoTemplate(item));
     }

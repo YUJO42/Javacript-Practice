@@ -1,3 +1,4 @@
+import { items } from '../pagination.js';
 import { renderTable } from '../render/render-table.js';
 
 export const buttonClick = () => {
@@ -5,7 +6,7 @@ export const buttonClick = () => {
 
   $buttonContainer.addEventListener('click', ({ target }) => {
     if (target.nodeName === 'BUTTON') {
-      renderTable(Number(target.innerHTML) - 1);
+      renderTable(items, Number(target.innerHTML) - 1);
     }
   });
 };
