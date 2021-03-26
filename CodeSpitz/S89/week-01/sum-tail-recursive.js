@@ -1,12 +1,7 @@
 const arr = Array.from({ length: 10 }, (_, i) => i + 1);
 
 const sumArr = (arr, acc = 0) => {
-  if (!arr.length) {
-    return acc;
-  }
-
-  const sum = acc + arr.pop();
-  return sumArr(arr, sum);
+  return arr.length ? sumArr(arr, acc + arr.shift()) : acc;
 };
 
 console.log(sumArr(arr));
