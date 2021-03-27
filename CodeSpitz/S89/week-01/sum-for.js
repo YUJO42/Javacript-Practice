@@ -1,9 +1,9 @@
 const arr = Array.from({ length: 10 }, (_, i) => i + 1);
 
-const sumArr = (arr) => {
+const sumArr = ([...arr]) => {
   let acc = 0;
-  for (let i = 0; i < arr.length; i++) {
-    acc += arr[i];
+  for (let i = 0; i < arr.length; ) {
+    acc += arr.pop();
   }
 
   return acc;
