@@ -1,45 +1,16 @@
 const arr = [1, 'abc', true, undefined, null, [123, '123'], (_) => 3, Symbol(), 'a\t\f\v\n\r~\b'];
 
-const isValid = (value) => {
-  const convertNullType = ['symbol', 'function', 'undefined'];
+const validator = {
+  data: [
+    (element) => !['symbol', 'function', 'undefined'].includes(typeof element),
+    (element) => !Number.isNaN(element),
+    (element) => !(typeof element === 'object' && element === null),
+    (element) => !(element === Infinity || element === -Infinity || element === Math.max() || element === Math.min()),
+  ],
 
-  if (typeof value === 'bigint') {
-    throw new Error('Do not know how to serialize a BigInt');
-  }
-
-  if (convertNullType.includes(typeof value)) {
-    return false;
-  }
-
-  if (Number.isNaN(value)) {
-    return false;
-  }
-
-  if (typeof value === 'object' && value === null) {
-    return false;
-  }
-
-  if (value === Infinity || value === -Infinity || value === Math.max() || value === Math.min()) {
-    return false;
-  }
-
-  return true;
-};
-
-const stringify = (value) => {
-  if (!isValid(value)) {
-    return 'null';
-  }
-
-  if (typeof value === 'string') {
-    return `"${escapeString(value, value.length - 1)}"`;
-  }
-
-  if (Array.isArray(value)) {
-    return `[${arrayStringify(value, value.length - 1)}]`;
-  }
-
-  return typeof value === 'string' ? `"${value}"` : String(value);
+  validate(element) {
+    return this.data.every((valid) => valid(element));
+  },
 };
 
 const characterToString = (char) => {
@@ -63,6 +34,26 @@ const escapeString = (value, i) => {
 
 const arrayStringify = (arr, i) => {
   return i < 1 ? stringify(arr[i]) : `${arrayStringify(arr, i - 1)},${stringify(arr[i])}`;
+};
+
+const stringify = (value) => {
+  if (typeof value === 'bigint') {
+    throw new Error('Do not know how to serialize a BigInt');
+  }
+
+  if (!validator.validate(value)) {
+    return 'null';
+  }
+
+  if (typeof value === 'string') {
+    return `"${escapeString(value, value.length - 1)}"`;
+  }
+
+  if (Array.isArray(value)) {
+    return `[${arrayStringify(value, value.length - 1)}]`;
+  }
+
+  return typeof value === 'string' ? `"${value}"` : String(value);
 };
 
 const _stringify_tail_recursive = (arr, i, str) => {
